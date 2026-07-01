@@ -5,7 +5,7 @@
 # No coding needed — just edit the values below.
 
 email:
-  to: "YOUR_EMAIL@gmail.com"        # where you want the daily digest sent
+  to: "geronimocieza@gmail.com"        # where you want the daily digest sent
   from_name: "Golf Tee Time Bot"
 
 filters:
