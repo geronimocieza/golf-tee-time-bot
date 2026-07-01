@@ -1,0 +1,97 @@
+# ─────────────────────────────────────────────────────────────
+# Golf Tee Time Bot — configuration
+# ─────────────────────────────────────────────────────────────
+# Edit this file to add/remove clubs or change email settings.
+# No coding needed — just edit the values below.
+
+email:
+  to: "YOUR_EMAIL@gmail.com"        # where you want the daily digest sent
+  from_name: "Golf Tee Time Bot"
+
+filters:
+  # Only include tee times on Saturday/Sunday. Set to false to see every day.
+  weekend_only: true
+
+# How many upcoming days each club's calendar shows (MiClub sites default to
+# showing about 6 days at a time starting today — this is fixed by the club's
+# website, not something we control).
+#
+# platform: "miclub"  -> fully automated scraping (most of your clubs)
+# platform: "manual"  -> we can't reliably auto-scrape this one; the email
+#                        will just include a direct link to check yourself.
+
+clubs:
+  - name: "Eastlake Golf Club"
+    platform: "miclub"
+    url: "https://www.eastlakegolfclub.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Bankstown Golf Club"
+    platform: "miclub"
+    url: "https://www.bankstowngolf.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Brighton Lakes Recreation & Golf Club"
+    platform: "miclub"
+    url: "https://brightonlakes.miclub.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Mona Vale Golf Club"
+    platform: "miclub"
+    url: "https://www.mvgc.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Long Reef Golf Club"
+    platform: "miclub"
+    url: "https://longreef.miclub.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Wakehurst Golf Club"
+    platform: "miclub"
+    url: "https://www.wakehurstgolf.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Richmond Golf Club"
+    platform: "miclub"
+    url: "https://www.richmondgolfclub.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Stonecutters Ridge Golf Club"
+    platform: "miclub"
+    url: "https://www.stonecuttersgc.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Riverside Oaks Golf Resort"
+    platform: "miclub"
+    url: "https://www.riversideoaks.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Pymble Golf Club"
+    platform: "miclub"
+    url: "https://www.pymblegolf.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Lakeside Golf Club Camden"
+    platform: "miclub"
+    url: "https://camdenlakeside.miclub.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  # --- Not on MiClub, so we can't auto-scrape these reliably ---
+
+  - name: "Macquarie Links International Golf Club"
+    platform: "manual"
+    url: "https://www.chronogolf.com/club/macquarie-links-international-golf-club"
+    note: "Uses a different booking platform (Chronogolf). Link included for manual check."
+
+  - name: "Hurstville Golf Club"
+    platform: "manual"
+    url: "https://www.golf-booking.com/en/club/hurstville-golf-course"
+    note: "Uses a different booking platform (Golf Booking) whose live times load via JavaScript, so it can't be auto-checked reliably. Also note: as of their last published visitor policy, Saturdays were members-only for visitors — worth confirming with the pro shop (02 9534 5024)."
+
+  # Twin Creeks is a private club (corporate access only, no public online
+  # booking) so it isn't included here. Remove this comment and add it back
+  # with a manual link if you do have a way to check availability there.
+
+  # --- A few other well-regarded public/semi-private courses near Sydney ---
+  # (all run on MiClub too — feel free to delete any you don't want)
+
+  - name: "Killara Golf Club"
+    platform: "miclub"
+    url: "https://www.kgc.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "Cronulla Golf Club"
+    platform: "miclub"
+    url: "https://cronulla.miclub.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"
+
+  - name: "North Ryde Golf Club"
+    platform: "miclub"
+    url: "https://www.northrydegolfclub.com.au/guests/bookings/ViewPublicCalendar.msp?booking_resource_id=3000000"

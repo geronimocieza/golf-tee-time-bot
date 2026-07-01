@@ -1,0 +1,53 @@
+name: Daily Tee Time Check
+
+on:
+  schedule:
+    # Runs at 19:30 UTC = 6:30am AEST (Sydney, non-daylight-saving, UTC+10)
+    # or 5:30am AEDT (Sydney, daylight-saving, UTC+11).
+    # GitHub Actions cron is always UTC and does not adjust for Sydney's
+    # daylight saving, so the actual local time will shift by an hour twice
+    # a year. Adjust the line below if you want a precise local time.
+    - cron: "30 19 * * *"
+  workflow_dispatch: {}   # lets you manually trigger a run any time from the Actions tab
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  check-tee-times:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tee time checker (sends email + writes docs/index.html)
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python check_tee_times.py
+
+      - name: Upload status page artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  publish-status-page:
+    needs: check-tee-times
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
